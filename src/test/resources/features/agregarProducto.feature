@@ -16,3 +16,4 @@ Característica: Automatizar e-commerce Mercado Libre
     Ejemplos:
       | url | producto | correo |
     ##@externaldata@parametros/Datos.xlsx@AgregarProducto
+   |https://www.mercadolibre.com.co/   |Kindle Scribe 32gb Lapiz Premium color Gris   |paangudi3@gmail.com|

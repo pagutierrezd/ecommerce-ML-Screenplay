@@ -11,6 +11,7 @@ import java.io.IOException;
 @CucumberOptions(
         features = "src/test/resources/features/",
         tags = "@AgregarCarrito",
+        glue = "co.com.mercadolibre.stepDefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 @RunWith(RunnerPersonalizado.class)
