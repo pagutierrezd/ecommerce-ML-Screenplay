@@ -1,9 +1,18 @@
 package co.com.mercadolibre.tasks;
 
-
+import co.com.mercadolibre.interactions.ScrollJavaScript;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.*;
+import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.questions.WebElementQuestion;
+import net.serenitybdd.screenplay.waits.WaitUntil;
+import org.openqa.selenium.*;
+
+import static co.com.mercadolibre.userInterfaces.InicioUI.TXT_BUSCADOR;
+import static co.com.mercadolibre.userInterfaces.ResultadoBusquedaUI.LBL_PRODUCTO;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class BuscarProductoTask implements Task {
 
@@ -15,7 +24,18 @@ public class BuscarProductoTask implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+        actor.attemptsTo(
+                Click.on(TXT_BUSCADOR),
+                Enter.keyValues(producto).into(TXT_BUSCADOR).thenHit(Keys.ENTER),
 
+                // Verifica que el producto buscado aparece en los resultados
+                Check.whether(WebElementQuestion.stateOf(LBL_PRODUCTO.of(producto)), WebElementStateMatchers.isNotVisible())
+                        .andIfSo(
+                                WaitUntil.the(LBL_PRODUCTO.of(producto), isVisible()).forNoMoreThan(15).seconds()
+                        ),
+                ScrollJavaScript.to(LBL_PRODUCTO.of(producto)),
+                JavaScriptClick.on(LBL_PRODUCTO.of(producto))
+        );
     }
 
     public static BuscarProductoTask conElProducto(String producto) {
