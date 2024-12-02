@@ -14,6 +14,7 @@ Característica: Automatizar e-commerce Mercado Libre
     Y completa el formulario de agregar domicilio
 
     Ejemplos:
-      | url | producto | correo |
+      | url                              | producto                                    | correo              |
     ##@externaldata@parametros/Datos.xlsx@AgregarProducto
    |https://www.mercadolibre.com.co/   |Kindle Scribe 32gb Lapiz Premium color Gris   |paangudi3@gmail.com|
+   |https://www.mercadolibre.com.co/   |Cámara Fujifilm Instax Mini 12 Color Rosa   |paangudi3@gmail.com|

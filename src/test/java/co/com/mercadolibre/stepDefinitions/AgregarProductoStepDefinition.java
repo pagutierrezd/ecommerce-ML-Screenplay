@@ -1,5 +1,6 @@
 package co.com.mercadolibre.stepDefinitions;
 
+import co.com.mercadolibre.tasks.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -25,7 +26,7 @@ public class AgregarProductoStepDefinition {
     @Cuando("busca el producto {string}")
     public void buscaElProducto(String producto) {
         OnStage.theActorInTheSpotlight().attemptsTo(
-                //BuscarProductoTask.conElProducto(producto)
+                BuscarProductoTask.conElProducto(producto)
         );
     }
 
