@@ -17,4 +17,3 @@ Característica: Automatizar e-commerce Mercado Libre
       | url                              | producto                                    | correo              |
     ##@externaldata@parametros/Datos.xlsx@AgregarProducto
    |https://www.mercadolibre.com.co/   |Kindle Scribe 32gb Lapiz Premium color Gris   |paangudi3@gmail.com|
-   |https://www.mercadolibre.com.co/   |Cámara Fujifilm Instax Mini 12 Color Rosa   |paangudi3@gmail.com|

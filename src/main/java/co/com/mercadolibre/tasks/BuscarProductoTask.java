@@ -1,5 +1,6 @@
 package co.com.mercadolibre.tasks;
 
+import co.com.mercadolibre.exceptions.ProductoNoEncontradoException;
 import co.com.mercadolibre.interactions.ScrollJavaScript;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -28,11 +29,16 @@ public class BuscarProductoTask implements Task {
                 Click.on(TXT_BUSCADOR),
                 Enter.keyValues(producto).into(TXT_BUSCADOR).thenHit(Keys.ENTER),
 
-                // Verifica que el producto buscado aparece en los resultados
                 Check.whether(WebElementQuestion.stateOf(LBL_PRODUCTO.of(producto)), WebElementStateMatchers.isNotVisible())
                         .andIfSo(
                                 WaitUntil.the(LBL_PRODUCTO.of(producto), isVisible()).forNoMoreThan(15).seconds()
-                        ),
+                        )
+        );
+        if (!LBL_PRODUCTO.of(producto).resolveFor(actor).isVisible()) {
+            throw new ProductoNoEncontradoException("El producto '" + producto + "' no se encontró en los resultados.");
+        }
+
+        actor.attemptsTo(
                 ScrollJavaScript.to(LBL_PRODUCTO.of(producto)),
                 JavaScriptClick.on(LBL_PRODUCTO.of(producto))
         );
