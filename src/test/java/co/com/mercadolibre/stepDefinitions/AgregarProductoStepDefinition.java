@@ -35,7 +35,7 @@ public class AgregarProductoStepDefinition {
 
     }
 
-    @Cuando("se le solicita iniciar sesion con su correo {string} y clave")
+    @Cuando("se le solicita iniciar sesion con su correo {string}")
     public void seLeSolicitaIniciarSesionConSuCorreoYClave(String string) {
 
     }

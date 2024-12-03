@@ -9,7 +9,7 @@ Característica: Automatizar e-commerce Mercado Libre
     Dado que el usuario se encuentra en la pagina '<url>'
     Cuando busca el producto '<producto>'
     Y agrega el producto '<producto>' al carrito
-    Y se le solicita iniciar sesion con su correo '<correo>' y clave
+    Y se le solicita iniciar sesion con su correo '<correo>'
     Entonces Visualiza '<producto>' en el carrito
     Y completa el formulario de agregar domicilio
 
