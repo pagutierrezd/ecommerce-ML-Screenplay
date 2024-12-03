@@ -30,13 +30,15 @@ public class AgregarProductoStepDefinition {
         );
     }
 
-    @Cuando("agrega el producto {string} al carrito")
-    public void agregaElProductoAlCarrito(String string) {
-
+    @Cuando("agrega el producto al carrito")
+    public void agregaElProductoAlCarrito() {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                AgregarAlCarritoTask.conElProducto()
+        );
     }
 
     @Cuando("se le solicita iniciar sesion con su correo {string}")
-    public void seLeSolicitaIniciarSesionConSuCorreoYClave(String string) {
+    public void seLeSolicitaIniciarSesionConSuCorreo(String string) {
 
     }
 
