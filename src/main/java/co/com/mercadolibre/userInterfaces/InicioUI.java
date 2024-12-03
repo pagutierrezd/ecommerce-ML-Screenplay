@@ -4,8 +4,7 @@ import net.serenitybdd.screenplay.targets.Target;
 
 public class InicioUI {
 
-    public static final Target TXT_BUSCADOR = Target
-            .the("Campo Busqueda Inicial")
+    public static final Target TXT_BUSCADOR = Target.the("Campo Busqueda Inicial")
             .locatedBy("//input[@class='nav-search-input']");
 
     //alternativa si se quiere generar la busqueda con la opción botón de búsqueda (icono de la lupa)

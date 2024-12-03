@@ -28,16 +28,14 @@ public class BuscarProductoTask implements Task {
         actor.attemptsTo(
                 Click.on(TXT_BUSCADOR),
                 Enter.keyValues(producto).into(TXT_BUSCADOR).thenHit(Keys.ENTER),
-
                 Check.whether(WebElementQuestion.stateOf(LBL_PRODUCTO.of(producto)), WebElementStateMatchers.isNotVisible())
                         .andIfSo(
                                 WaitUntil.the(LBL_PRODUCTO.of(producto), isVisible()).forNoMoreThan(15).seconds()
                         )
         );
-        if (!LBL_PRODUCTO.of(producto).resolveFor(actor).isVisible()) {
+        if (!LBL_PRODUCTO.of(producto).resolveFor(actor).isPresent()) {
             throw new ProductoNoEncontradoException("El producto '" + producto + "' no se encontró en los resultados.");
         }
-
         actor.attemptsTo(
                 ScrollJavaScript.to(LBL_PRODUCTO.of(producto)),
                 JavaScriptClick.on(LBL_PRODUCTO.of(producto))
