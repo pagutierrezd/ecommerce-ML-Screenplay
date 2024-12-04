@@ -1,5 +1,6 @@
 package co.com.mercadolibre.tasks;
 
+import co.com.mercadolibre.interactions.ScrollJavaScript;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -15,6 +16,7 @@ public class AgregarAlCarritoTask implements Task {
     public <T extends Actor> void performAs(T actor) {
 
         actor.attemptsTo(
+                ScrollJavaScript.to(BTN_AGREGAR_CARRITO),
                 Click.on(BTN_AGREGAR_CARRITO),
                 WaitUntil.the(BTN_INGRESAR_CUENTA, isVisible()).forNoMoreThan(10).seconds(),
                 Click.on(BTN_INGRESAR_CUENTA)

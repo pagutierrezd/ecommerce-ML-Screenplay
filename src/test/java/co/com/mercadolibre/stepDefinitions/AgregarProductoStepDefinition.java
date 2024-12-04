@@ -5,7 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.es.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.serenitybdd.screenplay.actions.Open;
-import net.serenitybdd.screenplay.actors.*;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.actors.OnlineCast;
 
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
@@ -37,9 +38,11 @@ public class AgregarProductoStepDefinition {
         );
     }
 
-    @Cuando("se le solicita iniciar sesion con su correo {string}")
-    public void seLeSolicitaIniciarSesionConSuCorreo(String string) {
-
+    @Cuando("se le solicita iniciar sesion con su correo {string} y clave {string}")
+    public void seLeSolicitaIniciarSesionConSuCorreoYClave(String correo, String clave) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                IniciarSesionTask.conCredenciales(correo, clave)
+        );
     }
 
     @Entonces("Visualiza {string} en el carrito")
