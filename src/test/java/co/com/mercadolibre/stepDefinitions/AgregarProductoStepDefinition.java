@@ -1,6 +1,7 @@
 package co.com.mercadolibre.stepDefinitions;
 
 import co.com.mercadolibre.tasks.*;
+
 import io.cucumber.java.Before;
 import io.cucumber.java.es.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -48,6 +49,22 @@ public class AgregarProductoStepDefinition {
 
     @Entonces("se completan los datos según la {string} seleccionada")
     public void seCompletanLosDatosSegúnLaSeleccionada(String accion) {
+
+        switch (accion) {
+            case "Crear cuenta":
+                OnStage.theActorInTheSpotlight().attemptsTo(
+                        CrearCuentaTask.conEntradaDatos()
+                );
+                break;
+
+            case "Ingresar":
+                OnStage.theActorInTheSpotlight().attemptsTo(
+                        IniciarSesionTask.conCredenciales()
+                );
+                break;
+            default:
+                throw new IllegalArgumentException("Opción de autenticación no válida: " + accion);
+        }
 
     }
 }

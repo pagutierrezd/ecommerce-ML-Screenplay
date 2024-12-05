@@ -1,5 +1,6 @@
 package co.com.mercadolibre.tasks;
 
+import co.com.mercadolibre.utils.DatosExcel;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -10,6 +11,9 @@ import net.serenitybdd.screenplay.actions.Switch;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.Keys;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 import static co.com.mercadolibre.userInterfaces.InicioSesionUI.*;
@@ -17,16 +21,23 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class IniciarSesionTask implements Task {
 
-    private final String correo;
-    private final String clave;
-
-    public IniciarSesionTask(String correo, String clave) {
-        this.correo = correo;
-        this.clave = clave;
-    }
-
     @Override
     public <T extends Actor> void performAs(T actor) {
+
+        ArrayList<Map<String, String>> dataExcel;
+
+        String correo = "";
+        String clave = "";
+
+        try {
+            dataExcel = DatosExcel.leerDatosDeHojaDeExcel("parametros/DatosAutenticacion.xlsx", "Autenticacion");
+            correo = dataExcel.get(0).get("correo");
+            clave = dataExcel.get(0).get("clave");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         // Guarda el handle de la ventana principal
         String mainWindow = Serenity.getWebdriverManager().getCurrentDriver().getWindowHandle();
@@ -62,7 +73,7 @@ public class IniciarSesionTask implements Task {
         Serenity.getWebdriverManager().getCurrentDriver().switchTo().window(mainWindow);
     }
 
-    public static IniciarSesionTask conCredenciales(String correo, String clave) {
-        return new IniciarSesionTask(correo, clave);
+    public static IniciarSesionTask conCredenciales() {
+        return new IniciarSesionTask();
     }
 }
