@@ -9,11 +9,10 @@ Característica: Automatizar e-commerce Mercado Libre
     Dado que el usuario se encuentra en la pagina '<url>'
     Cuando busca el producto '<producto>'
     Y agrega el producto al carrito
-    Y se le solicita iniciar sesion con su correo '<correo>' y clave '<clave>'
-    Entonces Visualiza '<producto>' en el carrito
-    Y completa el formulario de agregar domicilio
+    Y elige la opcion de autenticacion '<accion>'
+    Entonces se completan los datos según la '<accion>' seleccionada
 
     Ejemplos:
-      | url                              | producto                                    | correo              | clave     |
+      | url                              | producto                                    | accion       |
     ##@externaldata@parametros/Datos.xlsx@AgregarProducto
-   |https://www.mercadolibre.com.co/   |Kindle Scribe 32gb Lapiz Premium color Gris   |paangudi3@gmail.com   |Scant9756|
+   |https://www.mercadolibre.com.co/   |Kindle Scribe 32gb Lapiz Premium color Gris   |Ingresar|
