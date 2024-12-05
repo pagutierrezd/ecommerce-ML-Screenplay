@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 public class RunnerPersonalizado extends Runner {
 
     private Class<CucumberWithSerenity> classValue;
+
     private CucumberWithSerenity cucumberWithSerenity;
 
     public RunnerPersonalizado(Class<CucumberWithSerenity> classValue) throws Exception {
@@ -50,4 +51,5 @@ public class RunnerPersonalizado extends Runner {
         }
         cucumberWithSerenity.run(notifier);
     }
+
 }
